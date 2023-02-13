@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Login from "./Components/Login"
 import Register from "./Components/Register"
 import Navbar from "./Layout/Navbar"
@@ -11,6 +11,11 @@ import Home from './Components/Home';
 function App() {
 
   const { user, fetchUser } = useAuth();
+
+  useEffect(() => {
+    fetchUser();
+  }, [])
+
   fetchUser()
   console.log("user", user)
 
