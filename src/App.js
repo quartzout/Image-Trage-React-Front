@@ -12,12 +12,11 @@ function App() {
 
   const { user, fetchUser } = useAuth();
 
+  //При загрузке приложения вызывается fetchUser, и если у браузера была сохранена Cookie сессии сервера, то фетч выполняется удачно,
+  //и в дальнейшем все дочерние компоненты, использующие хук useAuth, будут иметь доступ к обьекту пользователя.
   useEffect(() => {
     fetchUser();
   }, [])
-
-  fetchUser()
-  console.log("user", user)
 
   return ( 
     <>
