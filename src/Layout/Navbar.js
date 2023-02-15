@@ -1,18 +1,17 @@
-import {React} from "react"
+import { React } from "react"
+import { Link } from "react-router-dom";
+import useAuth from "../Auth/useAuth";
+import LogoutLink from "../Components/LogoutLink";
 
 
-export default function Navbar(props) {
+export default function Navbar() {
     
-    const userDisplayName = "test"
-    const userCoins = 10
-    const isLoggedIn = true
+    const { user } = useAuth()
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
 
             <div className="container-fluid">
-
-                <p>home</p>
         
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -22,52 +21,33 @@ export default function Navbar(props) {
             
                     <ul className="navbar-nav">
                 
-                        <li className="nav-item">
-                            <p>home</p>
-                        </li>
+                        <Link to="/" className="nav-item">Home</Link>
 
-                        <li className="nav-item me-auto">
-                            <p>Users</p>
-                        </li>
+                        <Link to="/Users" className="nav-item">Users</Link>
+
 
                     </ul>
 
-                    {isLoggedIn ? 
+                    {user ? 
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item navbar-text text-success me-5">
-                                <h5><strong><span id="coin-balance">{userCoins}</span></strong></h5>
+                                <h5><strong><span id="coin-balance">{user.coinBalance}</span></strong></h5>
                             </li>
 
-                            <li className="nav-item text-dark">
-                                <p>{userDisplayName}</p>
-                            </li>
+                            <Link to={`users/${user.email}`} className="nav-item text-dark">{user.displayName}</Link>
 
-                            <li className="nav-item">
-                                <p>Generate</p>
-                            </li>
+                            <Link to="/Generate" className="nav-item">Generate</Link>
 
-                            <li className="nav-item">
-
-                                <p>Log out</p>
-
-                                <form method="post" asp-page="/Identity/Logout">
-                                    <button hidden type="submit" id="logout-button" className="nav-link" > Log out </button>
-                                </form>
-
-                            </li>
+                            <LogoutLink/>
 
                         </ul> 
                     : 
                         <ul className="navbar-nav ms-auto">
 
-                            <li className="nav-item">
-                                <p>Log in</p>
-                            </li>
-                    
-                            <li className="nav-item">
-                                <p>Register</p>
-                            </li>
-                    
+                            <Link to="/Login" className="nav-item">Login</Link>
+                        
+                            <Link to="/Register" className="nav-item">Register</Link>
+                        
                         </ul>
                     }
 
