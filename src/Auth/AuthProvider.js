@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useCallback, useState } from "react";
 import { UserContext } from "./UserContext";
 
 
@@ -18,9 +18,9 @@ export default function AuthProvider({ children }) {
      * Делает запрос на защищенный авторизацией api-эндпоинт и фетчит обьект пользователя, сохраняя его в стейт user.
      * Для успешного фетча необходимо, чтобы в браузере была cookie сессии серверного api, то есть чтобы пользователь был залогинен.
      */
-    function fetchUser() {
+    const fetchUser = useCallback(() => {
         (async () => {
-            const response = await fetch(process.env.REACT_APP_API_HOST + "/api/account/getcurrentuser/", {
+            const response = await fetch(process.env.REACT_APP_API_HOST + "/api/user/current", {
                 method: "GET",
                 headers: {
                     'Accept': 'application/json',
@@ -33,8 +33,8 @@ export default function AuthProvider({ children }) {
             }
             
         })()
-        
-    }
+    
+    }, [])
 
     /**
      * Сбрасывает стейт user на null. Равносильно выходу из аккаунта.
