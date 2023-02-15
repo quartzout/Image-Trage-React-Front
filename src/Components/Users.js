@@ -49,8 +49,12 @@ export default function Users() {
     }, [])
 
 
-    return <>
-        <h2>Users</h2>
-        {users.map(user => <ShortUser user={user}/>)}
-    </>
+    return (
+        <div className="row">
+            <h2>Пользователи</h2>
+            <div className="col-lg-9 col">
+                {users.map(user => <ShortUser user={user}/>)}
+            </div>
+        </div>
+    )
 }

@@ -1,5 +1,5 @@
 import {React, useState} from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import useAuth from "../Auth/useAuth";
 
 
@@ -80,53 +80,45 @@ export default function Login(props) {
 
     return <>
 
-        <form>
-    
-            <p>Link to login here</p>
-    
-            <div className="container">
+        <div className="row d-flex flex-column justify-content-center align-items-center">
+        
+            <div className="d-flex flex-column justify-content-center align-items-center">
 
-                <label for="email" ><b>Email</b></label>
-                <input type="text" placeholder="Enter email" id="email" name="email" value={formData.email} onChange={onFormChanged}/> <br/>
-                {validationData.email !== [] && <ul>{validationData.email.map(val => <li className="text-danger">{val}</li>)}</ul> }
+                <h2 className="mb-4">Регистрация</h2>
+        
+                <form className="col-3 border rounded-3 p-4">
 
-                <br/><br/>
+                    <label for="email" >Почта</label>
+                    <input type="text" placeholder="Ваш адрес почты" id="email" name="email" class="form-control" value={formData.email} onChange={onFormChanged}/> <br/>
+                    {validationData.email !== [] && <ul>{validationData.email.map(val => <li className="text-danger">{val}</li>)}</ul> }
 
-                <label for="displayName" ><b>Display name</b></label>
-                <input type="text" placeholder="Enter name" id="displayName" name="displayName" value={formData.displayName} onChange={onFormChanged}/> <br/>
-                {validationData.displayName !== [] && <ul>{validationData.displayName.map(val => <li className="text-danger">{val}</li>)}</ul> }
+                    <label for="displayName" >Имя пользователя</label>
+                    <input type="text" placeholder="Как вас будут знать" id="displayName" name="displayName" class="form-control" value={formData.displayName} onChange={onFormChanged}/> <br/>
+                    {validationData.displayName !== [] && <ul>{validationData.displayName.map(val => <li className="text-danger">{val}</li>)}</ul> }
 
-                <br/><br/>
-
-                <label for="displayName" ><b>Display name</b></label>
-                <textarea type="description" placeholder="Enter description" id="description" name="description" value={formData.description} onChange={onFormChanged}/> <br/>
-                {validationData.description !== [] && <ul>{validationData.description.map(val => <li className="text-danger">{val}</li>)}</ul> }
-
-                <br/><br/>
-    
-                <label for="password"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" id="password" name="password" value={formData.password} onChange={onFormChanged}/><br/>
-                {validationData.password !== [] && <ul>{validationData.password.map(val => <li className="text-danger">{val}</li>)}</ul> }
+                    <label for="password">Пароль</label>
+                    <input type="password" placeholder="Пароль" id="password" name="password" class="form-control" value={formData.password} onChange={onFormChanged}/><br/>
+                    {validationData.password !== [] && <ul>{validationData.password.map(val => <li className="text-danger">{val}</li>)}</ul> }
                 
-                <br/><br/>
+                    <label for="confirmPassword">Подтвердите пароль</label>
+                    <input type="confirmPassword" placeholder="Подтвердите пароль" id="confirmPassword" class="form-control" name="confirmPassword" value={formData.confirmPassword} onChange={onFormChanged}/><br/>
+                    {validationData.confirmPassword !== [] && <ul>{validationData.confirmPassword.map(val => <li className="text-danger">{val}</li>)}</ul> }
 
-                <label for="confirmPassword"><b>confirmPassword</b></label>
-                <input type="confirmPassword" placeholder="Confirm password" id="confirmPassword" name="confirmPassword" value={formData.confirmPassword} onChange={onFormChanged}/><br/>
-                {validationData.confirmPassword !== [] && <ul>{validationData.confirmPassword.map(val => <li className="text-danger">{val}</li>)}</ul> }
-                
-                <br/><br/>
-    
-                <label for="rememberMe"><b>Remember Me</b></label>
-                <input type="checkbox" id="rememberMe" name="rememberMe" checked={formData.rememberMe} onChange={onFormChanged}/> 
-                <br/> <br/>
-    
-                {validationData.global !== [] && <ul>{validationData.global.map(val => <li className="text-danger">{val}</li>)}</ul> }
-    
-                <button type="button" onClick={submit}>Login</button>
-    
+                    <label for="description" >Описание</label>
+                    <textarea type="description" placeholder="Информация о вас (необязательно)" rows={5} id="description" class="form-control" name="description" value={formData.description} onChange={onFormChanged}/> <br/>
+                    {validationData.description !== [] && <ul>{validationData.description.map(val => <li className="text-danger">{val}</li>)}</ul> }
+        
+                    <input type="checkbox" id="rememberMe" name="rememberMe" class="form-check-input" checked={formData.rememberMe} onChange={onFormChanged}/>
+                    <label className="ms-2" for="rememberMe">Запомнить</label>
+
+                    {validationData.global !== [] && <ul className="my-4">{validationData.global.map(val => <li className="text-danger">{val}</li>)}</ul> }
+        
+                    <button type="button" className="btn btn-primary" onClick={submit}>Зарегестрироваться</button>  
+                </form>
+
+                <p className="mt-4"> Или <Link  className="btn btn-primary my-3 ms-2" to="/register">Войти</Link> </p>
+
             </div>
-    
-        </form>
-    
+        </div>
     </>
 }

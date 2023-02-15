@@ -30,25 +30,19 @@ export default function Generate({ setLastBalanceChangeTimestamp }) {
     }
 
     return (
-        <div className="container">
             <div className="row">
 
-                <div className="col-12 d-flex flex-column align-items-center">
+                <h2>Генератор</h2> 
 
-                    <button onClick={GenerateImage} id="generate-button" className="btn btn-primary btn-lg m-5">
-                        Сгенерировать
-                        <small className="text-info">1 Coin</small>
-                    </button>
+                <div className="col-9">
 
-                    <OwnedPickedImage 
-                        image={pickedImage} 
-                        resetPickedImage={resetPickedImage} 
-                        setLastImagesChangeTimestamp={setLastImagesChangeTimestamp}
-                    />
+                    <div className="d-flex mb-5 mt-3">
+                        <button onClick={GenerateImage} id="generate-button" className="btn btn-lg btn-primary">
+                            Сгенерировать новую картинку &nbsp;<strong className="text-success">1₵</strong>
+                        </button>
+                        <strong className="text-success d-flex justify-content-center flex-column mx-4 mt-2"><h5>{user.coinBalance}₵ имеется</h5></strong>
+                    </div>
 
-                </div>
-
-                <div className="container">
                     <UserImages 
                         email={user.email}
                         status="inHeap" 
@@ -58,8 +52,17 @@ export default function Generate({ setLastBalanceChangeTimestamp }) {
                         setLastImagesChangeTimestamp={setLastImagesChangeTimestamp}/>
                 </div>
 
+                <div className="col-3 d-flex flex-column align-items-center">
+
+                    <OwnedPickedImage 
+                        image={pickedImage} 
+                        resetPickedImage={resetPickedImage} 
+                        setLastImagesChangeTimestamp={setLastImagesChangeTimestamp}
+                    />
+
+                </div>
+
             </div>
-        </div>
     )
 
 }

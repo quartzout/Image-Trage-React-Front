@@ -1,18 +1,20 @@
 import React from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import UserImages from "./UserImages"
 
 export default function ShortUser({ user }) {
 
-    const navigate = useNavigate()
 
-    function GotoUser() {
-        navigate(`/users/${user.email}/`)
-    }
+    return <div className="border border-3 border-primary rounded-4 my-5 p-4">
+        
+        <div className="d-flex">
+            <div className="card mb-4 p-2">
+                <h2>{user.displayName}</h2>
+                <h4>{user.email}</h4>
+                <Link to={`/users/${user.email}`} class="stretched-link" />
+            </div>
+        </div>
 
-    return <div className="card my-4" onClick={GotoUser}>
-        <h3>{user.displayName}</h3>
-        <h4>{user.email}</h4>
         <UserImages 
             email={user.email} 
             status="onSale" 
@@ -29,5 +31,6 @@ export default function ShortUser({ user }) {
             lastImagesChangeTimestamp={0} 
             maxNumber={10}
         />
+
     </div>
 }

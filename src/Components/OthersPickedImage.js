@@ -24,19 +24,20 @@ export default function OthersPickedImage({ image, resetPickedImage, setLastImag
 
 
     return (
-        <form className="col-12 d-flex flex-column align-items-center mb-5">
+        <form className="card">
 
-            <img alt="" className="img-thumbnail mw-50" src={process.env.REACT_APP_API_HOST + ( image ? "/" + image.webFullName : "/images/generate-placeholder.png")}/>
-            
-            {image && <>
-                <h3>{image.name}</h3>
-                <p>{image.description}</p>
-            
-                {image.isOnSale && <button disabled={!user || user.coinBalance < image.price} className="btn btn-primary btn-lg " type="button" onClick={Buy}>
-                    Купить &nbsp;&nbsp;&nbsp; <strong className="text-success">{image.price}</strong>
-                </button>}
-
-            </>}
+            <div className="col d-flex flex-column align-items-center mb-5 m-4">
+                <img alt="" className="img-thumbnail" src={process.env.REACT_APP_API_HOST + ( image ? "/" + image.webFullName : "/images/generate-placeholder.png")}/>
+                
+                {image && <>
+                    <h3 className="mt-3">{image.name}</h3>
+                    <p className="mt-2">{image.description}</p>
+                
+                    {image.isOnSale && <button disabled={!user || user.coinBalance < image.price} className="btn btn-primary btn-lg " type="button" onClick={Buy}>
+                        Купить &nbsp;&nbsp;&nbsp; <strong className="text-success">{image.price}₵</strong>
+                    </button>}
+                </>}
+            </div>
         </form>
     )
         

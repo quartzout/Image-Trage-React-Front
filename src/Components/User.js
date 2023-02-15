@@ -35,12 +35,16 @@ export default function User({ setLastBalanceChangeTimestamp }) {
 
     return <>{pageUser && 
         <div className="row">
-            <div className="col-8">
-                <h2>{pageUser.displayName}</h2>
-                <h3>{pageUser.email}</h3>
-                <p>{pageUser.description ?? ""}</p>
+            <div className="col-9">
 
-                <h2>{pageUser.displayName}'s images on sale</h2>
+                <div className="d-flex">
+                    <div className="card mb-4 p-2">
+                        <h2>{pageUser.displayName}</h2>
+                        <h4>{pageUser.email}</h4>
+                        <p>{pageUser.description ?? "Описания нет"}</p>
+                    </div>
+                </div>
+
                 <UserImages 
                     email={pageUser.email}
                     status="onSale" 
@@ -48,7 +52,6 @@ export default function User({ setLastBalanceChangeTimestamp }) {
                     setPickedImage={setPickedImage} 
                     lastImagesChangeTimestamp={lastImagesChangeTimestamp}
                 />
-                <h2>{pageUser.displayName}'s images in gallery</h2>
                 <UserImages 
                     email={pageUser.email}
                     status="inGallery" 
@@ -57,7 +60,7 @@ export default function User({ setLastBalanceChangeTimestamp }) {
                     lastImagesChangeTimestamp={lastImagesChangeTimestamp}
                 />
             </div>
-            <div className="col-4">
+            <div className="col-3">
                 {user && (user.id === pageUser.id) ?
                     <OwnedPickedImage 
                         image={pickedImage} 

@@ -19,7 +19,7 @@ export default function LogoutLink() {
         }
     }
 
-    return <button className="nav-item" onClick={logout}>Logout</button>
+    return <button className="btn btn-link nav-item nav-link" onClick={logout}>Logout</button>
         
 
 }

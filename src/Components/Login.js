@@ -1,5 +1,5 @@
 import {React, useState} from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import useAuth from "../Auth/useAuth"
 
 export default function Login(props) {
@@ -64,36 +64,33 @@ export default function Login(props) {
 
 
     return <>
+     
+        <div className="d-flex flex-column justify-content-center align-items-center">
+            
 
-        <form>
-    
-            <p>Link to register here</p>
-    
-            <div className="container">
-
-                <label for="email" ><b>Email</b></label>
-                <input type="text" placeholder="Enter email" id="email" name="email" value={formData.email} onChange={onFormChanged}/> <br/>
-                {validationData.email !== [] && <ul>{validationData.email.map(val => <li className="text-danger">{val}</li>)}</ul> }
-
-                <br/><br/>
-    
-                <label for="password"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" id="password" name="password" value={formData.password} onChange={onFormChanged}/><br/>
-                {validationData.password !== [] && <ul>{validationData.password.map(val => <li className="text-danger">{val}</li>)}</ul> }
+                <h2 className="mb-4">Войти в аккаунт</h2>
                 
-                <br/><br/>
-    
-                <label for="rememberMe"><b>Remember Me</b></label>
-                <input type="checkbox" id="rememberMe" name="rememberMe" checked={formData.rememberMe} onChange={onFormChanged}/> 
-                <br/> <br/>
-    
-                {validationData.global !== [] && <ul>{validationData.global.map(val => <li className="text-danger">{val}</li>)}</ul> }
-    
-                <button type="button" onClick={submit}>Login</button>
-    
-            </div>
-    
-        </form>
+                <form className="border rounded-3 p-4">
+                    <label for="email">Почта</label>
+                    <input type="email" placeholder="Введите адрес почты" id="email" name="email" className="form-control" value={formData.email} onChange={onFormChanged}/> <br/>
+                    {validationData.email !== [] && <ul>{validationData.email.map(val => <li className="text-danger">{val}</li>)}</ul> }
+        
+                    <label for="password">Пароль</label>
+                    <input type="password" placeholder="Enter Password" id="password" name="password" className="form-control" value={formData.password} onChange={onFormChanged}/><br/>
+                    {validationData.password !== [] && <ul>{validationData.password.map(val => <li className="text-danger">{val}</li>)}</ul> }
+                
+                    <input type="checkbox" className="form-check-input" id="rememberMe" name="rememberMe" checked={formData.rememberMe} onChange={onFormChanged}/> 
+                    <label className="ms-2" for="rememberMe">Запомнить</label>
+
+                    {validationData.global !== [] && <ul className="my-4">{validationData.global.map(val => <li className="text-danger">{val}</li>)}</ul> }
+        
+                    <button type="button" className="btn btn-primary" onClick={submit}>Войти</button>
+                </form>
+
+                <p className="mt-4"> Или <Link className="btn btn-primary my-3 ms-2" to="/register">Зарегестрироваться</Link> </p>
+
+        </div>
+
     
     </>
 }
