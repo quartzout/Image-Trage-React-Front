@@ -16,7 +16,8 @@ export default function Login(props) {
         displayName: "", 
         confirmPassword: "",
         password: "",
-        rememberMe: false
+        rememberMe: false,
+        description: ""
     })
 
     const emptyValidationData = {
@@ -24,7 +25,8 @@ export default function Login(props) {
         displayName: [],
         email: [],
         password: [],
-        confirmPassword: []
+        confirmPassword: [],
+        description: []
     }
 
     const [validationData, setValidationData] = useState(emptyValidationData)
@@ -93,6 +95,12 @@ export default function Login(props) {
                 <label for="displayName" ><b>Display name</b></label>
                 <input type="text" placeholder="Enter name" id="displayName" name="displayName" value={formData.displayName} onChange={onFormChanged}/> <br/>
                 {validationData.displayName !== [] && <ul>{validationData.displayName.map(val => <li className="text-danger">{val}</li>)}</ul> }
+
+                <br/><br/>
+
+                <label for="displayName" ><b>Display name</b></label>
+                <textarea type="description" placeholder="Enter description" id="description" name="description" value={formData.description} onChange={onFormChanged}/> <br/>
+                {validationData.description !== [] && <ul>{validationData.description.map(val => <li className="text-danger">{val}</li>)}</ul> }
 
                 <br/><br/>
     
