@@ -9,6 +9,7 @@ import Home from './Components/Home';
 import Generate from './Components/Generate';
 import User from './Components/User';
 import Users from './Components/Users';
+import Protected from './Components/Protected';
 
 function App() {
 
@@ -29,15 +30,16 @@ function App() {
   return ( 
     <>
       <Navbar/>
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/register" element={<Register/>}/>
-        <Route path="/generate" element={<Generate setLastBalanceChangeTimestamp={setLastBalanceChangeTimestamp}/>}/>
-        <Route path="/users/" element={<Users/>}/>
-        <Route path="/users/:email" element={<User setLastBalanceChangeTimestamp={setLastBalanceChangeTimestamp}/>  }/>
-      </Routes>
-      <Footer/>
+      <div className="m-5">
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/register" element={<Register/>}/>
+          <Route path="/generate" element={<><Protected><Generate setLastBalanceChangeTimestamp={setLastBalanceChangeTimestamp}/></Protected></>}/>
+          <Route path="/users/" element={<Users/>}/>
+          <Route path="/users/:email" element={<User setLastBalanceChangeTimestamp={setLastBalanceChangeTimestamp}/>  }/>
+        </Routes>
+      </div>
     </>
   );
 }
