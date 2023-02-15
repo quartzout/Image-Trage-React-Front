@@ -11,7 +11,7 @@ export default function ShortUser({ user }) {
             <div className="card mb-4 p-2">
                 <h2>{user.displayName}</h2>
                 <h4>{user.email}</h4>
-                <Link to={`/users/${user.email}`} class="stretched-link" />
+                <Link to={`/users/${user.email}`} className="stretched-link" />
             </div>
         </div>
 
